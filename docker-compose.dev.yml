@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  appserver:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.dev
+    container_name: appserver
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./app:/app
+    networks:
+      - appserver-network
+    env_file:
+      - ./app/.env
+
+networks:
+  appserver-network:
+    name: appserver-network
