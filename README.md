@@ -19,3 +19,27 @@ $ make collectstatic
 $ make up-development
 ```
 Test it out at [http://localhost:8000](http://localhost:8000).
+
+Log in as a user
+
+```bash
+$ http POST http://0.0.0.0:8000/api/user/token/ username=<username> password=<password> 'accept: application/json'
+```
+
+Save a new location
+
+```bash
+$ http POST http://0.0.0.0:8000/api/location/ country=Venezuela state=Sucre slug=ve 'accept: application/json' 'Authorization: Bearer <access_token>'
+```
+
+List all locations available
+
+```bash
+$ http GET http://0.0.0.0:8000/api/location/ 'accept: application/json' 'Authorization: Bearer <access_token>'
+```
+
+Stops containers and removes containers
+
+```bash
+$ make down-development
+```
